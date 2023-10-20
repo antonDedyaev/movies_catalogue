@@ -1,95 +1,90 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+import styles from "./page.module.scss";
+import CatalogueSection from "@/components/CatalogueSection/CatalogueSection";
+import PreviewSection from "@/components/PreviewSection/PreviewSection";
+import TopNavbar from "@/components/TopNavbar/TopNavbar";
+import fetchMovies from "@/actions/fetchMovies";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addMovies, turnPage } from "@/redux/features/moviesSlice";
+import { useEffect, useState } from "react";
+import IMovie from "@/models/IMovie";
+import Spinner from "@/components/UI/Spinner/Spinner";
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+const Homepage = () => {
+	const dispatch = useAppDispatch();
+	const { movies, searchedMovies, filteredMovies, currentPage, isFiltered } = useAppSelector(
+		(state) => state.movies,
+	);
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+	const renderedMovies = isFiltered ? filteredMovies : movies;
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+	console.log("page", currentPage);
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+	const [fetching, setFetching] = useState(false);
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+	useEffect(() => {
+		const fetchMovieList = async () => {
+			const movies = await fetchMovies(currentPage);
+
+			const savedMovies = localStorage.getItem("customMovies");
+			const customMovies: IMovie[] = savedMovies ? JSON.parse(savedMovies) : [];
+			dispatch(addMovies(movies.concat(customMovies)));
+			dispatch(turnPage());
+		};
+		!renderedMovies.length && fetchMovieList();
+	}, []);
+
+	const scrollHandler = (e: Event) => {
+		if (!(e.target instanceof Document)) return;
+		if (
+			e.target.documentElement.scrollHeight -
+				(e.target.documentElement.scrollTop + window.innerHeight) <
+				100 &&
+			currentPage
+		) {
+			setFetching(true);
+		}
+	};
+
+	useEffect(() => {
+		document.addEventListener("scroll", scrollHandler);
+
+		return function () {
+			document.removeEventListener("scroll", scrollHandler);
+		};
+	}, []);
+
+	useEffect(() => {
+		if (fetching) {
+			const fetchMoviesOScroll = async () => {
+				try {
+					const moviesPortion = await fetchMovies(currentPage);
+					dispatch(addMovies(moviesPortion));
+					dispatch(turnPage());
+				} catch (e) {
+					console.log("All data has been fetched!");
+				} finally {
+					setFetching(false);
+				}
+			};
+			fetchMoviesOScroll();
+		}
+	}, [fetching]);
+
+	console.log(movies);
+	return (
+		<main className={styles.main}>
+			<PreviewSection>
+				<TopNavbar />
+			</PreviewSection>
+			<CatalogueSection
+				movies={searchedMovies.length ? searchedMovies : renderedMovies}
+				search={!!searchedMovies.length}
+			/>
+			<Spinner />
+		</main>
+	);
+};
+
+export default Homepage;
