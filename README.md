@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Movie Catalogue
 
-## Getting Started
+The application is based on NextJS 13. It is basically a catalog of movies, cartoons, and TV shows. An unofficial Kinopoisk API (https://api.kinopoisk.dev/v1/documentation) was used as the public API.
 
-First, run the development server:
+On the main page, there is a list of movies with portions of 20 movies loaded every time you scroll to the bottom of the page. A small control panel is provided with an option to sort by date when the movie was added, by rating and by duration. The panel also includes two filter buttons to filter by rating and duration, as well as an "Add Movie" button. Additionally, you can search for movies using a search field in the page header.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Clicking on a movie card opens an individual movie page with a detailed information and an option to leave comments.
+User-added movies, comments, and ratings are saved in localStorage.
+
+The layout is responsive and has cross-browser support.
+
+### Install
+
+```
+make install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run in dev mode
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+make dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Build for production
 
-## Learn More
+```
+make build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Start the built app in production mode
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+make start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Lint and fix files
 
-## Deploy on Vercel
+```
+make lint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Run tests
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+make test
+```
+
+### Stack:
+
+- Typescript
+- Next 13
+- Redux Toolkit
+- Sass
+- Jest
+- Eslint
+
+---
+
+Приложение написано на NextJS 13 и представляет собой нкаталог фильмов, мультфильмов и сериалов.
+В качестве публичного API использовался неофициальный API КИнопоиска (https://api.kinopoisk.dev/v1/documentation).
+
+На главной странице представлен список подгружаемых фильмов с возможностью догрузки порциями по 20 фильмов при скролле вниз. Предусмотрена небольшая панель управления с функциями сортировки по дате добавления, рейтингу и длительности. На этой же панели присутствуют два фильтра - по рейтингу и длительности - и кнопка добавления фильма. Кроме того, можно искать фильмы с помощью поискового поля в шапке страницы. 
+
+При клике на карточку фильма открывается индивидуальная страница фильма с более подробной информацией о нем и возможностью оставлять свои комментарии.
+Добавляемые пользователем фильмы, комментарии к ним и оценки сохраняются в localStorage.
+
+У приложения адаптивная и кроссбраузерная верстка.
+
+### Установка
+
+```
+make install
+```
+
+### Запуск в режиме разработки
+
+```
+make dev
+```
+
+### Сборка для продакшена
+
+```
+make build
+```
+
+### Запуск в режиме продакшена
+
+```
+make start
+```
+
+### Запуск линтера и исправление ошибок
+
+```
+make lint
+```
+
+### Запуск тестов
+
+```
+make test
+```
+### Используемый стек:
+
+- Typescript
+- Next 13
+- Redux Toolkit
+- Sass
+- Jest
+- Eslint
