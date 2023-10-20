@@ -44,7 +44,10 @@ const ControlPanel = () => {
 
 	return (
 		<div className={styles.panelContainer}>
-			<div className={styles.panelContainer__sort}>
+			<div
+				className={styles.panelContainer__sort}
+				data-testid='sort'
+			>
 				<h4>Сортировка по</h4>
 				<div
 					className={styles.panelContainer__sortParameter}
@@ -64,7 +67,10 @@ const ControlPanel = () => {
 					/>
 				</div>
 			</div>
-			<div className={styles.panelContainer__filter}>
+			<div
+				className={styles.panelContainer__filter}
+				data-testid='filter'
+			>
 				<h4>Фильтры</h4>
 				<div className={styles.panelContainer__filterButtons}>
 					<button
@@ -96,7 +102,10 @@ const ControlPanel = () => {
 					maxValue={filterType === "rating" ? 10 : 250}
 				/>
 			</div>
-			<div className={styles.panelContainer__addMovie}>
+			<div
+				className={styles.panelContainer__addMovie}
+				data-testid='add-movie'
+			>
 				<h4>Добавить фильм</h4>
 				<button onClick={() => setModalActive(true)}>
 					<Image
@@ -109,6 +118,7 @@ const ControlPanel = () => {
 			</div>
 
 			<PopUp
+				datatest-id='popup'
 				isActive={modalActive}
 				setIsActive={setModalActive}
 			>

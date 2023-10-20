@@ -16,7 +16,4 @@ lint:
 test:
 	npm run test
 
-deploy:
-	npm run deploy
-
 .PHONY: build

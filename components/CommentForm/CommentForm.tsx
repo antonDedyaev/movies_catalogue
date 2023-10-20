@@ -30,6 +30,7 @@ const CommentForm: FC<ICommentFormProps> = ({ movie, setIsActive }) => {
 		<form
 			className={styles.formContainer}
 			onSubmit={handleSaveComment}
+			data-testid='comment-form'
 		>
 			<div className={styles.formContainer__inputs}>
 				<label htmlFor='user-name'>Ваше имя</label>
@@ -51,6 +52,7 @@ const CommentForm: FC<ICommentFormProps> = ({ movie, setIsActive }) => {
 			<button
 				type='submit'
 				className={styles.formContainer__saveButton}
+				data-testid='submit-comment'
 			>
 				Сохранить
 			</button>

@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./page.module.scss";
+import loaderStyles from "../components/UI/Spinner/Spinner.module.scss";
 import CatalogueSection from "@/components/CatalogueSection/CatalogueSection";
 import PreviewSection from "@/components/PreviewSection/PreviewSection";
 import TopNavbar from "@/components/TopNavbar/TopNavbar";
@@ -56,7 +57,9 @@ const Homepage = () => {
 	}, []);
 
 	useEffect(() => {
+		const spinner = document.querySelector(`.${loaderStyles.loader}`);
 		if (fetching) {
+			spinner?.classList.add(`${loaderStyles.active}`);
 			const fetchMoviesOScroll = async () => {
 				try {
 					const moviesPortion = await fetchMovies(currentPage);
@@ -65,6 +68,7 @@ const Homepage = () => {
 				} catch (e) {
 					console.log("All data has been fetched!");
 				} finally {
+					spinner?.classList.remove(`${loaderStyles.active}`);
 					setFetching(false);
 				}
 			};

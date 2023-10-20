@@ -127,6 +127,7 @@ const CustomMovieCard: FC<ICustomMovieCardProps> = ({ setIsActive }) => {
 			<button
 				className={styles.formContainer__saveButton}
 				type='submit'
+				data-testid='save-movie'
 			>
 				Сохранить
 			</button>

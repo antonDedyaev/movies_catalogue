@@ -28,6 +28,7 @@ const CommentSection: FC<ICommentSection> = ({ movie }) => {
 				<button
 					className={styles.commentsContainer__addComment}
 					onClick={handleAddComment}
+					data-testid='add-comment'
 				>
 					<Image
 						src='/add-icon.png'
@@ -53,6 +54,7 @@ const CommentSection: FC<ICommentSection> = ({ movie }) => {
 				setIsActive={setModalActive}
 			>
 				<CommentForm
+					data-testid='comment'
 					movie={movie}
 					setIsActive={setModalActive}
 				/>

@@ -11,6 +11,7 @@ const MovieCard: FC<IMovieProps> = ({ movie }) => {
 	const router = useRouter();
 	return (
 		<div
+			data-testid='movie-card'
 			className={styles.cardContainer}
 			onClick={() => router.push(`/movie/${movie.id}`)}
 		>
