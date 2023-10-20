@@ -1,0 +1,111 @@
+.breadcrumbsContainer {
+	position: relative;
+	display: flex;
+	gap: 40px;
+
+	margin-bottom: 30px;
+
+	a {
+		position: relative;
+		font-weight: 700;
+
+		&::after {
+			content: "";
+			position: absolute;
+			right: -22px;
+			top: 7px;
+			height: 22px;
+			width: 50%;
+			border-right: 3px solid $blue;
+		}
+	}
+
+	span {
+		padding-top: 2px;
+		opacity: 0.6;
+	}
+}
+
+@media screen and (max-width: 1750px) {
+	.breadcrumbsContainer {
+		font-size: 18px;
+
+		a {
+			&::after {
+				top: 4px;
+				height: 18px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1400px) {
+	.breadcrumbsContainer {
+		position: absolute;
+		top: 30px;
+		left: 40px;
+	}
+}
+
+@media screen and (max-width: 1350px) {
+	.breadcrumbsContainer {
+		top: 70px;
+
+		a {
+			&::after {
+				top: 3px;
+			}
+		}
+		span {
+			padding-top: 1px;
+		}
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.breadcrumbsContainer {
+		font-size: 12px;
+
+		a {
+			&::after {
+				top: 2px;
+				height: 14px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.breadcrumbsContainer {
+		margin-bottom: 15px;
+
+		font-size: 10px;
+
+		a {
+			&::after {
+				top: 1px;
+				height: 12px;
+
+				border-right: 2px solid $blue;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.breadcrumbsContainer {
+		gap: 20px;
+
+		font-size: 8px;
+
+		a {
+			&::after {
+				top: 0;
+				right: -12px;
+				height: 10px;
+
+				border-right: 1px solid $blue;
+			}
+		}
+	}
+}

@@ -1,0 +1,45 @@
+.filterContainer {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	max-width: 0;
+	opacity: 0;
+
+	overflow: hidden;
+
+	&__range {
+		display: flex;
+		flex-direction: column;
+
+		justify-content: space-between;
+		align-items: center;
+		gap: 5px;
+
+		transition: max-width 0.3s, opacity 0.2s;
+
+		span {
+			font-size: 14px;
+		}
+
+		input {
+			accent-color: $red;
+			cursor: pointer;
+		}
+	}
+
+	&__rating {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	button {
+		transform: rotate(45deg);
+	}
+
+	&_visible {
+		max-width: 300px;
+		opacity: 1;
+		overflow: visible;
+	}
+}

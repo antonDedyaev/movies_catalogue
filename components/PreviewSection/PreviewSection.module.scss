@@ -1,0 +1,10 @@
+.previewContainer {
+	position: relative;
+
+	height: 500px;
+
+	img {
+		-o-object-fit: cover;
+		object-fit: cover;
+	}
+}

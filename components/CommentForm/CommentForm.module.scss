@@ -1,0 +1,51 @@
+.formContainer {
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 20px;
+
+	&__inputs {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		color: $dark;
+
+		input {
+			height: 46px;
+		}
+
+		textarea {
+			height: 80px;
+		}
+
+		input,
+		textarea {
+			width: 100%;
+			padding: 5px 10px;
+			background: $orange-gray;
+
+			font-size: 20px;
+
+			border-radius: 4px;
+		}
+		label {
+			width: 40%;
+			font-size: 22px;
+			font-weight: 700;
+		}
+	}
+
+	&__saveButton {
+		padding: 10px 20px;
+
+		color: $white;
+		font-size: 20px;
+
+		border-radius: 5px;
+
+		background: $dark-gray;
+	}
+}

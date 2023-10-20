@@ -1,0 +1,26 @@
+.starsContainer {
+	width: 200px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 5px;
+
+	button {
+		border: none;
+		background: none;
+
+		cursor: pointer;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.starsContainer {
+		width: 100px;
+	}
+	.singleStar {
+		img {
+			width: 10px !important;
+		}
+	}
+}

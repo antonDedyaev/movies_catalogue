@@ -1,0 +1,89 @@
+.loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100vw;
+	height: 100vh;
+
+	display: none;
+	justify-content: center;
+	align-items: flex-end;
+
+	background: $black;
+	opacity: 0.6;
+
+	&__content {
+		$root: &;
+		$size: 80px;
+
+		width: $size;
+		height: $size;
+		margin-bottom: 60px;
+		border: 3px dotted $extra-gray;
+		border-style: solid solid dotted dotted;
+		border-radius: 50%;
+		display: inline-block;
+		position: relative;
+		-webkit-animation: rotation 2s linear infinite;
+		animation: rotation 2s linear infinite;
+
+		&:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			border: 3px dotted $red;
+			border-style: solid solid dotted;
+			width: calc($size / 2);
+			height: calc($size / 2);
+			border-radius: 50%;
+			-webkit-animation: rotationBack 1s linear infinite;
+			animation: rotationBack 1s linear infinite;
+			transform-origin: center center;
+		}
+	}
+
+	@-webkit-keyframes rotation {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes rotation {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	@-webkit-keyframes rotationBack {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(-360deg);
+		}
+	}
+
+	@keyframes rotationBack {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(-360deg);
+		}
+	}
+
+	&.active {
+		display: flex;
+	}
+}

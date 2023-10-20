@@ -1,0 +1,54 @@
+.cloudContainer {
+	width: 600px;
+	display: flex;
+	gap: 20px;
+
+	margin-bottom: 40px;
+
+	padding: 25px;
+
+	background: $orange-gray;
+
+	border-radius: 12px;
+	box-shadow: 0 3px 8px 2px $dark-gray;
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+		span {
+			font-size: 18px;
+			color: $blue;
+		}
+
+		p {
+			color: $dark;
+			font-style: italic;
+
+			opacity: 0.8;
+		}
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.cloudContainer {
+		width: 400px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.cloudContainer {
+		width: 350px;
+
+		&__content {
+			span {
+				font-size: 14px;
+			}
+
+			p {
+				font-size: 14px;
+			}
+		}
+	}
+}

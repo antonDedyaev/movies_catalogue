@@ -1,0 +1,117 @@
+.navbarContainer {
+	position: absolute;
+	top: 40px;
+	width: 100vw;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: 120px;
+
+	z-index: 5;
+
+	&__logo {
+		width: 100%;
+
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 30px;
+
+		margin-left: 40px;
+
+		span {
+			color: $white;
+			font-size: 44px;
+			font-weight: 700;
+			line-height: 24px;
+		}
+	}
+
+	&__search {
+		width: 40%;
+		height: 50px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		padding: 6px 10px;
+
+		border-radius: 6px;
+		border: 3px solid $gray;
+
+		background: transparent url("/search-icon.png") 98% no-repeat;
+
+		color: $white;
+
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 24px;
+
+		&::-webkit-input-placeholder {
+			color: $white;
+
+			font-size: 20px;
+			font-weight: 400;
+			line-height: 24px;
+		}
+
+		&::-moz-placeholder {
+			color: $white;
+
+			font-size: 20px;
+			font-weight: 400;
+			line-height: 24px;
+		}
+
+		&:-ms-input-placeholder {
+			color: $white;
+
+			font-size: 20px;
+			font-weight: 400;
+			line-height: 24px;
+		}
+
+		&::-ms-input-placeholder {
+			color: $white;
+
+			font-size: 20px;
+			font-weight: 400;
+			line-height: 24px;
+		}
+
+		&::placeholder {
+			color: $white;
+
+			font-size: 20px;
+			font-weight: 400;
+			line-height: 24px;
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.navbarContainer {
+		&__search {
+			width: 60%;
+		}
+	}
+}
+
+@media screen and (max-width: 660px) {
+	.navbarContainer {
+		&__logo {
+			justify-content: center;
+			margin-left: 0;
+
+			span {
+				font-size: 28px;
+			}
+		}
+
+		&__search {
+			width: 80%;
+		}
+	}
+}
