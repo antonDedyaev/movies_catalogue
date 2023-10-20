@@ -18,8 +18,6 @@ const SingleStar: FC<ISingleStarProps> = ({ count, selected }) => {
 		<button className={styles.singleStar}>
 			<Image
 				src={selected ? "/rating-star_filled.png" : "/rating-star.png"}
-				// width={20}
-				// height={20}
 				width={0}
 				height={0}
 				sizes='100vw'
