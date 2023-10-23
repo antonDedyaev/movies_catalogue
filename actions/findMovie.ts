@@ -11,8 +11,19 @@ const findMovie = async (queryText: string) => {
         }
     );
     const data = await response.json();
+
+    console.log(data);
+
+
     
     const movies: IMovie[] = data.docs.map((movie: any) => {
+        const genres = movie.genres.map((genre: string) => {
+            return { name: genre }
+        });
+        console.log('genres', genres);
+        const countries = movie.countries.map((country: string) => {
+            return { name: country }
+        });
         return {
             id: movie.id,
             name: movie.name,
@@ -24,11 +35,13 @@ const findMovie = async (queryText: string) => {
                 url: movie.poster,
                 previewUrl: movie.poster,
             },
-            genres: movie.genres,
-            countries: movie.countries,
-            rating: movie.rating.kp,
+            genres,
+            countries, 
+            kpRating: movie.rating,
         }
     });
+
+    
 
 
 

@@ -8,8 +8,12 @@ import CommentSection from "@/components/CommentSection/CommentSection";
 import Breadcrumbs from "@/components/UI/Breadcrumbs/Breadcrumbs";
 
 const MoviePage = ({ params }: { params: { id: number } }) => {
-	const { movies } = useAppSelector((state) => state.movies);
-	const matchedMovie = movies.find((movie) => movie.id === Number(params.id));
+	const { movies, searchedMovies } = useAppSelector((state) => state.movies);
+	const matchedMovie = (searchedMovies.length ? searchedMovies : movies).find(
+		(movie) => movie.id === Number(params.id),
+	);
+	console.log("id", params.id);
+	console.log("matched", matchedMovie);
 
 	const joinedGenres = matchedMovie?.genres.map((genre) => genre.name).join(", ");
 	const joinedCountries = matchedMovie?.countries.map((country) => country.name).join(", ");

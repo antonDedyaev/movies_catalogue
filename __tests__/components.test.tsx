@@ -4,6 +4,15 @@ import { screen, fireEvent } from "@testing-library/react";
 import ControlPanel from "@/components/ControlPanel/ControlPanel";
 import CatalogueSection from "@/components/CatalogueSection/CatalogueSection";
 import CommentSection from "@/components/CommentSection/CommentSection";
+import TopNavbar from "@/components/TopNavbar/TopNavbar";
+
+const mockedFetch = jest.fn(() =>
+	Promise.resolve({
+		json: () => Promise.resolve({}),
+	}),
+) as jest.Mock;
+
+global.fetch = mockedFetch;
 
 const mockMovies = [
 	{
@@ -42,15 +51,16 @@ const mockMovies = [
 	},
 ];
 
+const customInitialState = {
+	movies: mockMovies,
+	searchedMovies: [],
+	filteredMovies: [],
+	userRating: 0,
+	currentPage: 1,
+	isFiltered: false,
+};
+
 describe("HOMEPAGE", () => {
-	const customInitialState = {
-		movies: mockMovies,
-		searchedMovies: [],
-		filteredMovies: [],
-		userRating: 0,
-		currentPage: 1,
-		isFiltered: false,
-	};
 	it("renders empty catalogue", () => {
 		renderWithStore(
 			<CatalogueSection
@@ -95,14 +105,6 @@ describe("HOMEPAGE", () => {
 });
 
 describe("MOVIE PAGE", () => {
-	const customInitialState = {
-		movies: mockMovies,
-		searchedMovies: [],
-		filteredMovies: [],
-		userRating: 0,
-		currentPage: 1,
-		isFiltered: false,
-	};
 	it("renders comments section and add comment button", () => {
 		renderWithStore(<CommentSection movie={mockMovies[0]} />, customInitialState);
 		const header = screen.getByText("Комментарии");
@@ -117,4 +119,30 @@ describe("MOVIE PAGE", () => {
 		const commentCloud = screen.queryAllByTestId("comment");
 		expect(commentCloud).toHaveLength(0);
 	});
+});
+
+describe("SEARCH INPUT", () => {
+	it("displays input value", () => {
+		renderWithStore(<TopNavbar />, customInitialState);
+
+		const searchInput = screen.getByPlaceholderText(/поиск фильмов.../i);
+		expect(searchInput).toBeInTheDocument();
+		fireEvent.input(searchInput, {
+			target: { value: "titanic" },
+		});
+		expect(searchInput).toHaveValue("titanic");
+	});
+
+	// it("clears input upon Enter", async () => {
+	// 	renderWithStore(<TopNavbar />, customInitialState);
+
+	// 	const searchInput = screen.getByPlaceholderText(/поиск фильмов.../i);
+	// 	fireEvent.input(searchInput, {
+	// 		target: { value: "bond" },
+	// 	});
+	// 	expect(searchInput).toHaveValue("bond");
+	// 	fireEvent.keyDown(searchInput, {
+	// 		key: "Enter",
+	// 	});
+	// });
 });
