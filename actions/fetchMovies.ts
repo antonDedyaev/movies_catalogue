@@ -30,7 +30,7 @@ const fetchMovies = async (pageNumber: number) => {
             userRating: 0,
         }
     });
-    console.log('movies', movies);
+    console.log('fetchedMovies', movies);
 
     return movies;
 } 

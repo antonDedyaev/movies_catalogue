@@ -20,7 +20,10 @@ const CatalogueSection: FC<ICatalogueProps> = ({ movies, search }) => {
 				{search ? (
 					<div className={styles.catalogueContainer__searchControl}>
 						<h1>Найденные совпадения</h1>
-						<button onClick={() => dispatch(getSearchedMovies([]))}>
+						<button
+							onClick={() => dispatch(getSearchedMovies([]))}
+							data-testid='remove-button'
+						>
 							<Image
 								src='/add-icon.png'
 								width={50}
@@ -40,6 +43,7 @@ const CatalogueSection: FC<ICatalogueProps> = ({ movies, search }) => {
 					<MovieCard
 						movie={movie}
 						key={movie.id}
+						data-testid='movie-card'
 					/>
 				))}
 			</ul>

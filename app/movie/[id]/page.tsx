@@ -12,8 +12,6 @@ const MoviePage = ({ params }: { params: { id: number } }) => {
 	const matchedMovie = (searchedMovies.length ? searchedMovies : movies).find(
 		(movie) => movie.id === Number(params.id),
 	);
-	console.log("id", params.id);
-	console.log("matched", matchedMovie);
 
 	const joinedGenres = matchedMovie?.genres.map((genre) => genre.name).join(", ");
 	const joinedCountries = matchedMovie?.countries.map((country) => country.name).join(", ");

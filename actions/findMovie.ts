@@ -12,15 +12,12 @@ const findMovie = async (queryText: string) => {
     );
     const data = await response.json();
 
-    console.log(data);
-
-
+    console.log('foundMovie', data);
     
     const movies: IMovie[] = data.docs.map((movie: any) => {
         const genres = movie.genres.map((genre: string) => {
             return { name: genre }
         });
-        console.log('genres', genres);
         const countries = movie.countries.map((country: string) => {
             return { name: country }
         });

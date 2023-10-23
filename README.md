@@ -7,6 +7,7 @@ On the main page, there is a list of movies with portions of 20 movies loaded ev
 Clicking on a movie card opens an individual movie page with a detailed information and an option to leave comments.
 User-added movies, comments, and ratings are saved in localStorage.
 
+Unit-tests are written using Jest/React Testing library.
 The layout is responsive and has cross-browser support.
 
 ### Install
@@ -64,6 +65,7 @@ make test
 При клике на карточке фильма открывается индивидуальная страница фильма с более подробной информацией о нем и возможностью оставлять свои комментарии.
 Добавляемые пользователем фильмы, комментарии к ним и оценки сохраняются в localStorage.
 
+Написаны unit-тесты с использованием Jest/React Testing library.
 У приложения адаптивная и кроссбраузерная верстка.
 
 ### Установка
