@@ -89,12 +89,26 @@
 			line-height: 24px;
 		}
 	}
+
+	&__noMatch {
+		padding: 30px 0;
+		text-align: center;
+		font-size: 50px;
+		line-height: 200%;
+		color: $red;
+	}
 }
 
 @media screen and (max-width: 1200px) {
 	.navbarContainer {
 		&__search {
 			width: 60%;
+		}
+
+		&__noMatch {
+			padding: 20px 0;
+			font-size: 30px;
+			line-height: 160%;
 		}
 	}
 }
@@ -112,6 +126,12 @@
 
 		&__search {
 			width: 80%;
+		}
+
+		&__noMatch {
+			padding: 0;
+			font-size: 18px;
+			line-height: 150%;
 		}
 	}
 }

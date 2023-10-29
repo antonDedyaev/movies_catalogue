@@ -4,15 +4,20 @@ import { FC, KeyboardEvent, useState } from "react";
 import findMovie from "@/actions/findMovie";
 import { useAppDispatch } from "@/redux/hooks";
 import { getSearchedMovies } from "@/redux/features/moviesSlice";
+import PopUp from "../UI/PopUp/PopUp";
 
 const TopNavbar: FC = () => {
 	const dispatch = useAppDispatch();
+	const [modalActive, setModalActive] = useState(false);
 	const [searchValue, setSearchValue] = useState("");
 	const handleMovieSearch = async (e: KeyboardEvent) => {
 		if (e.key === "Enter") {
 			const target = e.target as HTMLInputElement;
 			const matchedResults = await findMovie(target.value);
-			dispatch(getSearchedMovies(matchedResults));
+			matchedResults.length
+				? dispatch(getSearchedMovies(matchedResults))
+				: setModalActive(true);
+
 			setSearchValue("");
 		}
 	};
@@ -35,6 +40,16 @@ const TopNavbar: FC = () => {
 				onChange={(e) => setSearchValue(e.target.value)}
 				onKeyDown={handleMovieSearch}
 			/>
+			<PopUp
+				isActive={modalActive}
+				setIsActive={setModalActive}
+			>
+				<h2 className={styles.navbarContainer__noMatch}>
+					Совпадений не найдено :(
+					<br />
+					Попробуйте ввести другое название
+				</h2>
+			</PopUp>
 		</div>
 	);
 };
